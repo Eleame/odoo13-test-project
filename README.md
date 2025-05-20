@@ -2,10 +2,10 @@ Project Management — Odoo 13
 
 Requirements:
 
-Odoo 13.0 (Community or Enterprise)
-PostgreSQL 10+
-Python 3.6+
-Core modules: base, web, mail, hr
+- Odoo 13.0 (Community or Enterprise)
+- PostgreSQL 10+
+- Python 3.6+
+- Core modules: base, web, mail, hr
 
 Installation:
 
