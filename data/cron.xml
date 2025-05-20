@@ -1,0 +1,12 @@
+<odoo>
+    <record id="ir_cron_pm_overdue_notify" 
+        model="ir.cron">
+        <field name="name">PM: Notify overdue tasks</field>
+        <field name="model_id" ref="project_management.model_project_management_task"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_notify_overdue()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+    </record>
+</odoo>

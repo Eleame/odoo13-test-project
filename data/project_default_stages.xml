@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <record id="stage_created"     model="project.management.stage">
+        <field name="name">Sukurta</field>
+        <field name="sequence">1</field>
+        <field name="fold">False</field>
+    </record>
+
+    <record id="stage_in_progress" model="project.management.stage">
+        <field name="name">Vykdoma</field>
+        <field name="sequence">2</field>
+        <field name="fold">False</field>
+    </record>
+
+    <record id="stage_done"       model="project.management.stage">
+        <field name="name">Baigta</field>
+        <field name="sequence">3</field>
+        <field name="fold">True</field>
+        <field name="is_final">True</field>
+    </record>
+</odoo>

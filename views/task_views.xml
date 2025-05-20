@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <!-- LIST -->
+  <record id="view_task_tree" model="ir.ui.view">
+    <field name="name">project.management.task.tree</field>
+    <field name="model">project.management.task</field>
+    <field name="arch" type="xml">
+      <tree decoration-danger="is_overdue"
+            decoration-success="stage_is_final">
+        <field name="is_overdue"     invisible="1"/>
+        <field name="stage_is_final" invisible="1"/>
+        <field name="name"/>
+        <field name="project_id"/>
+        <field name="stage_id"/>
+        <field name="user_ids"/>
+        <field name="priority"/>
+        <field name="planned_end"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- KANBAN -->
+  <record id="view_task_kanban" model="ir.ui.view">
+    <field name="name">project.management.task.kanban</field>
+    <field name="model">project.management.task</field>
+    <field name="arch" type="xml">
+      <kanban default_group_by="stage_id" class="o_kanban_small_column">
+        <field name="is_overdue"     invisible="1"/>
+        <field name="stage_is_final" invisible="1"/>
+        <field name="name"/>
+        <field name="stage_id"/>
+        <field name="user_ids"/>
+        <field name="priority"/>
+
+        <templates>
+          <t t-name="kanban-box">
+            <div t-attf-class="oe_kanban_content oe_kanban_global_click
+                               #{record.stage_is_final.raw_value and 'bg-success text-white' or ''}
+                               #{record.is_overdue.raw_value    and 'bg-danger text-white'  or ''}">
+              <strong><field name="name"/></strong><br/>
+              <field name="user_ids" widget="many2many_tags"
+                     options="{'no_create': True}"/>
+              <t t-if="record.is_overdue.raw_value">
+                <span class="badge badge-danger">Overdue</span>
+              </t>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <!-- FORM -->
+  <record id="view_task_form" model="ir.ui.view">
+    <field name="name">project.management.task.form</field>
+    <field name="model">project.management.task</field>
+    <field name="arch" type="xml">
+      <form string="Task">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="project_id"/>
+            <field name="stage_id"/>
+            <field name="user_ids" widget="many2many_tags"/>
+            <field name="priority"/>
+          </group>
+          <group>
+            <field name="planned_start"/>
+            <field name="planned_end"/>
+            <field name="is_overdue" readonly="1"/>
+          </group>
+          <notebook>
+            <page string="Description">
+              <field name="description" nolabel="1"/>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- ACTION -->
+  <record id="action_task" model="ir.actions.act_window">
+    <field name="name">Tasks</field>
+    <field name="res_model">project.management.task</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph</field>
+    <field name="context">{"search_default_my": 1}</field>
+  </record>
+
+</odoo>

@@ -1,0 +1,8 @@
+<odoo>
+    <record id="rule_task_all" model="ir.rule">
+        <field name="name">Task: all see all</field>
+        <field name="model_id" ref="project_management.model_project_management_task"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+</odoo>

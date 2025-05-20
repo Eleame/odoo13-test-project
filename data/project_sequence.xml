@@ -1,0 +1,9 @@
+<odoo>
+    <record id="seq_project_code" 
+        model="ir.sequence">
+        <field name="name">Project Code</field>
+        <field name="code">project.management.project</field>
+        <field name="padding">4</field>
+        <field name="prefix">PRJ-</field>
+    </record>
+</odoo>

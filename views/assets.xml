@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="assets_backend_project_management"
+              inherit_id="web.assets_backend"
+              name="project_management backend assets">
+
+        <xpath expr="." position="inside">
+            <script type="text/javascript"
+                    src="/project_management/static/src/js/tooltip_safe.js"/>
+
+            <script type="text/javascript"
+                    src="/project_management/static/src/js/dashboard.js"/>
+
+            <link rel="qweb" type="text/xml"
+                  href="/project_management/static/src/xml/dashboard_templates.xml"/>
+        </xpath>
+    </template>
+</odoo>

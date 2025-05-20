@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_user_project,Project user project,model_project_management_project,project_management.group_project_user,1,0,0,0
+access_project_manager_project,Project manager project,model_project_management_project,project_management.group_project_manager,1,1,1,1
+access_project_user_task,Project user task,project_management.model_project_management_task,project_management.group_project_user,1,1,1,0
+access_project_manager_task,Project manager task,model_project_management_task,project_management.group_project_manager,1,1,1,1
+access_project_admin_project,Project admin project,model_project_management_project,base.group_system,1,1,1,1
+access_project_admin_task,Project admin task,model_project_management_task,base.group_system,1,1,1,1

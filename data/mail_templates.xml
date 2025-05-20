@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="pm_mail_template_task_overdue" model="mail.template">
+        <field name="name">[PM] Užduotis pavėluota</field>
+        <field name="model_id" ref="project_management.model_project_management_task"/>
+        <field name="subject">
+            [${object.project_id.name or ''}] Užduotis „${object.name}“ pavėluota!
+        </field>
+        <field name="email_from">${(user.email or user.company_id.email) | safe}</field>
+        <field name="email_to">
+            ${', '.join(emp.work_email or '' for emp in object.user_ids if emp.work_email)}
+        </field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html"><![CDATA[
+            <p>Sveiki,</p>
+            <p>
+                Užduoties <strong>${object.name}</strong> pabaigos data buvo
+                <strong>${object.planned_end}</strong>, todėl ji laikoma pavėluota.
+            </p>
+            <p>Prašome imtis veiksmų.</p>
+        ]]></field>
+    </record>
+    <record id="mail_template_task_stage_changed" model="mail.template">
+        <field name="name">[PM] Užduoties būsena pasikeitė</field>
+        <field name="model_id" ref="project_management.model_project_management_task"/>
+        <field name="subject">
+            [${object.project_id.name or ''}] „${object.name}“ → ${object.stage_id.name}
+        </field>
+        <field name="email_from">${(user.email or user.company_id.email) | safe}</field>
+        <field name="email_to">
+            ${', '.join(emp.work_email or '' for emp in object.user_ids if emp.work_email)}
+        </field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html"><![CDATA[
+            <p>Sveiki,</p>
+
+            <p>
+                Užduotis <strong>${object.name}</strong>
+                projekte <strong>${object.project_id.name}</strong>
+                <t t-if="is_new">buvo <strong>sukurta</strong></t>
+                <t t-else>pakeitė būseną į
+                    <strong>${object.stage_id.name}</strong></t>.
+            </p>
+
+            <p>
+                <a t-if="object.get_portal_url()" t-att-href="object.get_portal_url()">
+                    Atverti užduotį sistemoje
+                </a>
+            </p>
+        ]]></field>
+    </record>
+</odoo>

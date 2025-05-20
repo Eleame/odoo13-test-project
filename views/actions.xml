@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- act_window -->
+    <record id="action_task_filter_wizard" model="ir.actions.act_window">
+        <field name="name">Filter Tasks</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">project.management.task.filter.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_task_filter_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

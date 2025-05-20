@@ -1,0 +1,12 @@
+<odoo>
+    <record id="access_stage_manager" 
+        model="ir.model.access">
+        <field name="name">Project stage manager</field>
+        <field name="model_id" ref="project_management.model_project_management_stage"/>
+        <field name="group_id" ref="project_management.group_project_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+</odoo>

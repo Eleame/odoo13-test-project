@@ -1,0 +1,46 @@
+<odoo>
+    <record id="action_project" 
+        model="ir.actions.act_window">
+        <field name="name">Projects</field>
+        <field name="res_model">project.management.project</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="context">{"search_default_my":1}</field>
+    </record>
+
+    <record id="view_project_tree" 
+        model="ir.ui.view">
+        <field name="name">project.management.project.tree</field>
+        <field name="model">project.management.project</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="progress" widget="progressbar"/>
+                <field name="manager_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_project_form" 
+        model="ir.ui.view">
+        <field name="name">project.management.project.form</field>
+        <field name="model">project.management.project</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="code" readonly="1"/>
+                        <field name="name"/>
+                        <field name="manager_id"/>
+                        <field name="progress" widget="progressbar" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Tasks">
+                            <field name="task_ids" context="{'default_project_id': active_id}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
